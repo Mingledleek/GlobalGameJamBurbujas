@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2all8fomw1kn"]
+[gd_scene load_steps=3 format=3 uid="uid://c2all8fomw1kn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_s5xy4"]
+[ext_resource type="PackedScene" uid="uid://cncbwplbkyqlc" path="res://placeholders/test_burbuja.tscn" id="2_4l2x8"]
 
 [node name="Main" type="Control" node_paths=PackedStringArray("jugador")]
 layout_mode = 3
@@ -10,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s5xy4")
-jugador = NodePath("")
+jugador = NodePath("MainGame/TestBurbuja")
 
 [node name="MenuPrincipal" type="Control" parent="."]
 visible = false
@@ -49,6 +50,9 @@ grow_vertical = 2
 text = "Salir"
 
 [node name="MainGame" type="Node2D" parent="."]
+
+[node name="TestBurbuja" parent="MainGame" instance=ExtResource("2_4l2x8")]
+position = Vector2(-3, 1)
 
 [node name="Camara" type="Camera2D" parent="MainGame"]
 
@@ -128,6 +132,22 @@ offset_left = -31.0
 offset_top = -150.0
 offset_right = 9.0
 offset_bottom = -110.0
+
+[node name="RegresarLvlSelect" type="Button" parent="MenuGanar"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 239.0
+offset_right = 476.0
+offset_bottom = 270.0
+text = "Regresar a Seleccion de Niveles"
+
+[node name="SiguienteLvl" type="Button" parent="MenuGanar"]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 315.0
+offset_right = 390.0
+offset_bottom = 346.0
+text = "Siguiente Nivel"
 
 [connection signal="pressed" from="MenuPrincipal/ElegirNivel" to="." method="_on_elegir_nivel_pressed"]
 [connection signal="pressed" from="MenuPrincipal/Salir" to="." method="_on_salir_pressed"]

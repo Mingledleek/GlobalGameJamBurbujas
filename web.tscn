@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://co3mdtqvx53af"]
+[gd_scene load_steps=3 format=3 uid="uid://co3mdtqvx53af"]
+
+[ext_resource type="Texture2D" uid="uid://cumuupqn73fnx" path="res://placeholders/icon.svg" id="1_cl076"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ushf"]
 
@@ -8,3 +10,5 @@
 shape = SubResource("RectangleShape2D_7ushf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.64934
+texture = ExtResource("1_cl076")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://di7he1p1u5cxu"]
+[gd_scene load_steps=3 format=3 uid="uid://di7he1p1u5cxu"]
 
 [ext_resource type="Texture2D" uid="uid://cumuupqn73fnx" path="res://placeholders/icon.svg" id="1_w2dgn"]
+[ext_resource type="PackedScene" uid="uid://co3mdtqvx53af" path="res://web.tscn" id="2_uq47i"]
 
 [node name="TestLevel1" type="Node2D"]
 
@@ -8,3 +9,6 @@
 position = Vector2(1, 0)
 scale = Vector2(1, 0.328125)
 texture = ExtResource("1_w2dgn")
+
+[node name="Web" parent="." instance=ExtResource("2_uq47i")]
+position = Vector2(400, -2)

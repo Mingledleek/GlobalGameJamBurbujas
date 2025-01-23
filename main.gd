@@ -6,17 +6,19 @@ extends Control
 @onready var seleccion_niveles := $SeleccionNiveles
 @onready var menu_pausa := $MenuPausa
 @onready var menu_perder := $MenuPerder
+@onready var menu_ganar := $MenuGanar
 
 @export var oportunidades:int = 1
 @export var jugador: Node #En inspector arrastrar la instancia del jugador
-
+var nivel
 var jugando:bool
 
 func _ready():# se llama al principio
+	jugando = false
 	menu.show()
+	menu_ganar.hide()
 	menu_perder.hide()
 	menu_pausa.hide()
-	jugando = false
 	seleccion_niveles.hide()
 	if jugador != null:
 		jugador.hide()
@@ -34,15 +36,18 @@ func unload_level():
 func load_level(nombre_nivel : String):
 	# Esta func recibe el nivel adecuado a cargar, elimina el anterior, y carga el nuevo
 	# Los niveles se tienen que guardar en la carpeta niveles!!!
+	nivel = nombre_nivel
 	seleccion_niveles.hide()
-	if (jugador != null):
-		jugador.show()
 	unload_level()
+	jugador.show()
 	jugando = true
 	var dir_nivel := "res://niveles/%s.tscn" %nombre_nivel 
 	var nivel_actual = load(dir_nivel).instantiate()
 	instancia_nivel = nivel_actual
 	main_game.add_child(nivel_actual)
+	var web = instancia_nivel.get_node("Web")
+	web.connect("body_entered", _on_finish_body_entered)
+	print(web)
 
 func _process(delta):
 	if(jugando and Input.is_action_just_pressed("pausa")):
@@ -50,19 +55,22 @@ func _process(delta):
 		get_tree().paused 
 	if(jugando and Input.is_action_just_pressed("debug_perder")):
 		perder()
-		
-		
-		
+	
 
 func win():
-	# Logica para cuando el jugador llega al final del nivel
-	
-	pass
-
+	jugando = false
+	menu_ganar.show()
 
 func perder():
 	jugando = false
 	menu_perder.show()
+
+
+# Funcion que maneja la entrada de jugador al final del nivel
+func _on_finish_body_entered(body):
+	print("player entered")
+	if body.name == "test_burbuja":
+		print("you won")
 	pass
 
 # FUNCIONES DEL MANEJO DE BOTONES EN MENUS
@@ -95,6 +103,8 @@ func _on_regresar_niveles_pressed():
 
 
 func _on_reintentar_pressed():
+	#vuelve a cargar el nivel actual
+	load_level(nivel)
 	pass
 	
 
