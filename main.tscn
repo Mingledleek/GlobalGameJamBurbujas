@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_s5xy4"]
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" node_paths=PackedStringArray("jugador")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s5xy4")
+jugador = NodePath("")
 
 [node name="MenuPrincipal" type="Control" parent="."]
 visible = false
@@ -80,8 +81,60 @@ offset_right = 110.0
 offset_bottom = 15.0
 text = "Nivel 3"
 
+[node name="MenuPausa" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Reanudar" type="Button" parent="MenuPausa"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Reanudar"
+
+[node name="RegresarNiveles" type="Button" parent="MenuPausa"]
+layout_mode = 0
+offset_left = -77.0
+offset_top = 75.0
+offset_right = 85.0
+offset_bottom = 106.0
+text = "regresar a seleccion
+"
+
+[node name="MenuPerder" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Reintentar" type="Button" parent="MenuPerder"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = -88.0
+offset_right = 46.0
+offset_bottom = -57.0
+text = "Reintentar"
+
+[node name="SeleccionLvl" type="Button" parent="MenuPerder"]
+layout_mode = 0
+offset_left = -74.0
+offset_top = -156.0
+offset_right = 71.0
+offset_bottom = -125.0
+text = "Seleccion de nivel"
+
+[node name="MenuGanar" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -31.0
+offset_top = -150.0
+offset_right = 9.0
+offset_bottom = -110.0
+
 [connection signal="pressed" from="MenuPrincipal/ElegirNivel" to="." method="_on_elegir_nivel_pressed"]
 [connection signal="pressed" from="MenuPrincipal/Salir" to="." method="_on_salir_pressed"]
 [connection signal="pressed" from="SeleccionNiveles/Nivel1" to="." method="_on_nivel_1_pressed"]
 [connection signal="pressed" from="SeleccionNiveles/Nivel2" to="." method="_on_nivel_2_pressed"]
 [connection signal="pressed" from="SeleccionNiveles/Nivel3" to="." method="_on_nivel_3_pressed"]
+[connection signal="pressed" from="MenuPausa/Reanudar" to="." method="_on_reanudar_pressed"]
+[connection signal="pressed" from="MenuPausa/RegresarNiveles" to="." method="_on_regresar_niveles_pressed"]
+[connection signal="pressed" from="MenuPerder/Reintentar" to="." method="_on_reintentar_pressed"]
+[connection signal="pressed" from="MenuPerder/SeleccionLvl" to="." method="_on_seleccion_lvl_pressed"]

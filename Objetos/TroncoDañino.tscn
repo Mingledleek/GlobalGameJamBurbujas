@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://j5l6gs14isv5"]
+
+[ext_resource type="Script" path="res://Objetos/TroncoDañino.gd" id="1_2w744"]
+[ext_resource type="Texture2D" uid="uid://cumuupqn73fnx" path="res://icon.svg" id="2_idy2o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhki1"]
+
+[node name="TroncoDañino" type="Area2D"]
+script = ExtResource("1_2w744")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_idy2o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dhki1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
