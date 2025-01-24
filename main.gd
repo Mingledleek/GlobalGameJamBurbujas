@@ -10,6 +10,7 @@ extends Control
 
 @export var oportunidades:int = 1
 @export var jugador: Node #En inspector arrastrar la instancia del jugador
+
 var nivel
 var jugando:bool
 
@@ -36,9 +37,10 @@ func unload_level():
 func load_level(nombre_nivel : String):
 	# Esta func recibe el nivel adecuado a cargar, elimina el anterior, y carga el nuevo
 	# Los niveles se tienen que guardar en la carpeta niveles!!!
+	unload_level()
 	nivel = nombre_nivel
 	seleccion_niveles.hide()
-	unload_level()
+	
 	jugador.show()
 	jugando = true
 	var dir_nivel := "res://niveles/%s.tscn" %nombre_nivel 
@@ -46,8 +48,21 @@ func load_level(nombre_nivel : String):
 	instancia_nivel = nivel_actual
 	main_game.add_child(nivel_actual)
 	var web = instancia_nivel.get_node("Web")
+	var inicio = instancia_nivel.get_node("Inicio")
+	
+	# mover jugador a la ubicacion de inicio
 	web.connect("body_entered", _on_finish_body_entered)
-	print(web)
+	
+	var obstaculos = get_tree().get_nodes_in_group("obstaculo")
+	for obs in obstaculos:
+		print("added obs")
+		obs.connect("body_entered", _on_obstacle_body_entered)
+		pass
+	jugador.position = inicio.position
+
+func _on_obstacle_body_entered():
+	print("obstacle")
+	pass
 
 func _process(delta):
 	if(jugando and Input.is_action_just_pressed("pausa")):
@@ -57,10 +72,6 @@ func _process(delta):
 		perder()
 	
 
-func win():
-	jugando = false
-	menu_ganar.show()
-
 func perder():
 	jugando = false
 	menu_perder.show()
@@ -68,10 +79,11 @@ func perder():
 
 # Funcion que maneja la entrada de jugador al final del nivel
 func _on_finish_body_entered(body):
-	print("player entered")
-	if body.name == "test_burbuja":
-		print("you won")
-	pass
+	if(jugando):
+		print("player won")
+		menu_ganar.show()
+		jugando = false
+	
 
 # FUNCIONES DEL MANEJO DE BOTONES EN MENUS
 func _on_nivel_1_pressed():
@@ -93,6 +105,7 @@ func _on_elegir_nivel_pressed():
 
 func _on_reanudar_pressed():
 	menu_pausa.hide()
+	jugando = false
 	
 
 
@@ -104,7 +117,10 @@ func _on_regresar_niveles_pressed():
 
 func _on_reintentar_pressed():
 	#vuelve a cargar el nivel actual
+	
 	load_level(nivel)
+	menu_perder.hide()
+	jugando = true
 	pass
 	
 
@@ -114,3 +130,12 @@ func _on_seleccion_lvl_pressed():
 	menu_pausa.hide()
 	menu_perder.hide()
 	unload_level()
+
+
+func _on_regresar_lvl_select_pressed():
+	seleccion_niveles.show()
+	menu_pausa.hide()
+	menu_perder.hide()
+	unload_level()
+	jugando = false
+	menu_ganar.hide()

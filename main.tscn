@@ -158,3 +158,4 @@ text = "Siguiente Nivel"
 [connection signal="pressed" from="MenuPausa/RegresarNiveles" to="." method="_on_regresar_niveles_pressed"]
 [connection signal="pressed" from="MenuPerder/Reintentar" to="." method="_on_reintentar_pressed"]
 [connection signal="pressed" from="MenuPerder/SeleccionLvl" to="." method="_on_seleccion_lvl_pressed"]
+[connection signal="pressed" from="MenuGanar/RegresarLvlSelect" to="." method="_on_regresar_lvl_select_pressed"]
