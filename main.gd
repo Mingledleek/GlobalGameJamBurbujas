@@ -8,7 +8,6 @@ extends Control
 @onready var menu_perder := $MenuPerder
 @onready var menu_ganar := $MenuGanar
 
-@export var oportunidades:int = 1
 @export var jugador: Node #En inspector arrastrar la instancia del jugador
 
 var nivel

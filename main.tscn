@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2all8fomw1kn"]
+[gd_scene load_steps=7 format=3 uid="uid://c2all8fomw1kn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_s5xy4"]
 [ext_resource type="PackedScene" uid="uid://cncbwplbkyqlc" path="res://placeholders/test_burbuja.tscn" id="2_4l2x8"]
+[ext_resource type="Texture2D" uid="uid://d1ff0q26510t6" path="res://Portada/portada.png" id="3_dk3lj"]
+[ext_resource type="Texture2D" uid="uid://d1qeoey7n7fdy" path="res://Portada/button.png" id="3_yjw07"]
+[ext_resource type="FontFile" uid="uid://bknk56snx7hsq" path="res://Retro Gaming.ttf" id="4_r80gx"]
+[ext_resource type="Texture2D" uid="uid://cjynucdurh1um" path="res://Portada/button_2.png" id="5_c18gv"]
 
 [node name="Main" type="Control" node_paths=PackedStringArray("jugador")]
 layout_mode = 3
@@ -13,118 +17,292 @@ grow_vertical = 2
 script = ExtResource("1_s5xy4")
 jugador = NodePath("MainGame/TestBurbuja")
 
+[node name="Portada" type="Sprite2D" parent="."]
+position = Vector2(-1, 1)
+texture = ExtResource("3_dk3lj")
+
 [node name="MenuPrincipal" type="Control" parent="."]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ElegirNivel" type="Button" parent="MenuPrincipal"]
+[node name="ElegirNivel" type="TextureButton" parent="MenuPrincipal"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -101.0
-offset_top = -39.0
-offset_right = 63.0
-offset_bottom = -7.99999
+offset_left = -460.0
+offset_top = 14.0
+offset_right = -27.0
+offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Selección de Niveles"
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_yjw07")
 
-[node name="Salir" type="Button" parent="MenuPrincipal"]
+[node name="Label" type="Label" parent="MenuPrincipal/ElegirNivel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -4.0
-offset_right = 1.0
-offset_bottom = 27.0
+offset_left = -88.0
+offset_top = -10.5
+offset_right = 88.0
+offset_bottom = 10.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_r80gx")
+theme_override_font_sizes/font_size = 32
+text = "Seleccionar nivel"
+
+[node name="Salir" type="TextureButton" parent="MenuPrincipal"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -461.0
+offset_top = 88.0
+offset_right = -28.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_c18gv")
+
+[node name="Label" type="Label" parent="MenuPrincipal/Salir"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -20.5
+offset_right = 47.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_r80gx")
+theme_override_font_sizes/font_size = 32
 text = "Salir"
 
 [node name="MainGame" type="Node2D" parent="."]
 
 [node name="TestBurbuja" parent="MainGame" instance=ExtResource("2_4l2x8")]
+visible = false
 position = Vector2(-3, 1)
 
 [node name="Camara" type="Camera2D" parent="MainGame"]
 
 [node name="SeleccionNiveles" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Nivel1" type="Button" parent="SeleccionNiveles"]
+[node name="Nivel1" type="TextureButton" parent="SeleccionNiveles"]
 layout_mode = 0
-offset_left = -104.0
-offset_top = -14.0
-offset_right = -43.0
-offset_bottom = 17.0
+offset_left = -594.0
+offset_top = -291.0
+offset_right = -161.0
+offset_bottom = -161.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_yjw07")
+
+[node name="Label" type="Label" parent="SeleccionNiveles/Nivel1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.5
+offset_top = -10.5
+offset_right = 31.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_r80gx")
+theme_override_font_sizes/font_size = 32
 text = "Nivel 1"
 
-[node name="Nivel2" type="Button" parent="SeleccionNiveles"]
+[node name="Nivel2" type="TextureButton" parent="SeleccionNiveles"]
 layout_mode = 0
-offset_left = -29.0
-offset_top = -16.0
-offset_right = 32.0
-offset_bottom = 15.0
+offset_left = -591.0
+offset_top = -151.0
+offset_right = -158.0
+offset_bottom = -21.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_yjw07")
+
+[node name="Label" type="Label" parent="SeleccionNiveles/Nivel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -10.5
+offset_right = 33.5
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_r80gx")
+theme_override_font_sizes/font_size = 32
 text = "Nivel 2"
 
-[node name="Nivel3" type="Button" parent="SeleccionNiveles"]
-layout_mode = 0
-offset_left = 49.0
-offset_top = -16.0
-offset_right = 110.0
-offset_bottom = 15.0
+[node name="Nivel3" type="TextureButton" parent="SeleccionNiveles"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.225
+anchor_top = -0.4
+anchor_right = 12.05
+anchor_bottom = 2.85
+offset_left = -630.0
+offset_top = 9.0
+offset_right = -630.0
+offset_bottom = 8.99999
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_yjw07")
+
+[node name="Label" type="Label" parent="SeleccionNiveles/Nivel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -11.5
+offset_right = 33.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_r80gx")
+theme_override_font_sizes/font_size = 32
 text = "Nivel 3"
 
 [node name="MenuPausa" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Reanudar" type="Button" parent="MenuPausa"]
+[node name="Reanudar" type="TextureButton" parent="MenuPausa"]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_right = 84.0
+offset_bottom = 31.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_yjw07")
+
+[node name="Label" type="Label" parent="MenuPausa/Reanudar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = -20.5
+offset_right = 97.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_r80gx")
+theme_override_font_sizes/font_size = 32
 text = "Reanudar"
 
-[node name="RegresarNiveles" type="Button" parent="MenuPausa"]
+[node name="RegresarNiveles" type="TextureButton" parent="MenuPausa"]
 layout_mode = 0
 offset_left = -77.0
 offset_top = 75.0
 offset_right = 85.0
 offset_bottom = 106.0
-text = "regresar a seleccion
-"
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_c18gv")
+
+[node name="Label" type="Label" parent="MenuPausa/RegresarNiveles"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.5
+offset_top = -21.0
+offset_right = 215.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_r80gx")
+theme_override_font_sizes/font_size = 31
+text = "Selección de niveles"
 
 [node name="MenuPerder" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Reintentar" type="Button" parent="MenuPerder"]
+[node name="Reintentar" type="TextureButton" parent="MenuPerder"]
 layout_mode = 0
-offset_left = -45.0
-offset_top = -88.0
-offset_right = 46.0
-offset_bottom = -57.0
+offset_left = -458.0
+offset_top = 46.0
+offset_right = -25.0
+offset_bottom = 176.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_yjw07")
+
+[node name="Label" type="Label" parent="MenuPerder/Reintentar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.0
+offset_top = -20.5
+offset_right = 109.0
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_r80gx")
+theme_override_font_sizes/font_size = 32
 text = "Reintentar"
 
-[node name="SeleccionLvl" type="Button" parent="MenuPerder"]
+[node name="SeleccionLvl" type="TextureButton" parent="MenuPerder"]
 layout_mode = 0
-offset_left = -74.0
-offset_top = -156.0
-offset_right = 71.0
-offset_bottom = -125.0
-text = "Seleccion de nivel"
+offset_left = -240.0
+offset_top = 46.0
+offset_right = 193.0
+offset_bottom = 176.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_yjw07")
+
+[node name="Label" type="Label" parent="MenuPerder/SeleccionLvl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.5
+offset_top = -20.0
+offset_right = 201.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_r80gx")
+theme_override_font_sizes/font_size = 31
+text = "Selección de niveles"
 
 [node name="MenuGanar" type="Control" parent="."]
 anchors_preset = 0
@@ -133,21 +311,44 @@ offset_top = -150.0
 offset_right = 9.0
 offset_bottom = -110.0
 
-[node name="RegresarLvlSelect" type="Button" parent="MenuGanar"]
+[node name="RegresarLvlSelect" type="TextureButton" parent="MenuGanar"]
 layout_mode = 0
-offset_left = 226.0
-offset_top = 239.0
-offset_right = 476.0
-offset_bottom = 270.0
-text = "Regresar a Seleccion de Niveles"
+offset_left = -79.0
+offset_top = 116.0
+offset_right = 354.0
+offset_bottom = 246.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_yjw07")
 
-[node name="SiguienteLvl" type="Button" parent="MenuGanar"]
+[node name="Label" type="Label" parent="MenuGanar/RegresarLvlSelect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.5
+offset_top = -20.0
+offset_right = 201.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_r80gx")
+theme_override_font_sizes/font_size = 31
+text = "Selección de niveles"
+
+[node name="SiguienteLvl" type="TextureButton" parent="MenuGanar"]
+visible = false
 layout_mode = 0
 offset_left = 266.0
 offset_top = 315.0
 offset_right = 390.0
 offset_bottom = 346.0
-text = "Siguiente Nivel"
+
+[node name="Label" type="Label" parent="MenuGanar/SiguienteLvl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="pressed" from="MenuPrincipal/ElegirNivel" to="." method="_on_elegir_nivel_pressed"]
 [connection signal="pressed" from="MenuPrincipal/Salir" to="." method="_on_salir_pressed"]
